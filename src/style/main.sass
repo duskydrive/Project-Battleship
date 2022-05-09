@@ -1,0 +1,114 @@
+@import './node_modules/reset-css/sass/reset'
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap')
+
+*
+    box-sizing: border-box
+
+body
+    padding: 0 80px
+    min-height: 100vh
+    background: url("../img/bg.png") no-repeat
+    background-size: cover
+    font-family: 'Noto Sans', sans-serif
+    font-size: 16px
+    color: #282828
+
+.wrap
+    position: relative
+
+.position-wrap
+    position: absolute
+    top: 35px
+    right: 0
+
+.input-wrap
+    position: relative
+    input
+        padding: 0 20px 0 52px
+        width: 240px
+        height: 45px
+        font-weight: 500
+        border: 0
+        border-radius: 10px
+        background: rgba(255, 255, 255, 0.85)
+        &:focus
+            outline: none
+    button
+        position: absolute
+        top: 9px
+        left: 12px
+        padding: 0
+        width: 28px
+        height: 28px
+        background: url("../img/search.png") no-repeat
+        background-size: cover
+        border: 0
+        cursor: pointer
+
+main
+    display: flex
+    flex-direction: column
+    justify-content: center
+    min-height: 100vh
+
+.container
+    position: relative
+    padding: 50px 348px 75px 50px
+    align-self: flex-start
+    background: rgba(224, 224, 224, 0.85)
+    border-radius: 15px
+    img
+        position: absolute
+        top: 70px
+        right: -170px
+        width: 400px
+
+.weather
+    margin-bottom: 5px
+    font-size: 2rem
+    font-weight: 400
+
+.location
+    font-size: 3rem
+    font-weight: 500
+
+.temperature
+    position: relative
+    padding-right: 80px
+    min-width: 310px
+    font-size: 12.5rem
+    font-weight: 700
+    border-right: 3px solid #282828
+    &::after
+        content: '\00B0 С'
+        position: absolute
+        top: 15px
+        right: 40px
+        font-size: 2rem
+
+.wrapper
+    display: flex
+    .right
+        padding-left: 25px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        min-width: 200px
+        div
+            margin-bottom: 15px
+            font-weight: 400
+            font-size: 1.1rem
+            text-transform: uppercase
+            &:first-child
+                span:last-child
+                    position: relative
+                    &::after
+                        content: '\00B0 С'
+                        position: absolute
+                        top: 0px
+                        right: -13px
+                        font-size: 0.7rem
+            &:last-child
+                margin-bottom: 0
+            span:last-child
+                margin-left: 10px
