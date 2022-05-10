@@ -7,8 +7,19 @@ const Gameboard = () => {
   const placeShip = (...values) => {
     const newShip = Ship(...values);
     ships.push(newShip);
-    // this return here is purely for test purposes
-    return newShip.coordinates;
+  };
+
+  const checkShips = () => {
+    let result = true;
+
+    for (let i = 0; i < ships.length; i++) {
+      if (!ships[i].isSunk()) {
+        result = false;
+        break;
+      }
+    }
+
+    return result;
   };
 
   const registerMissedAttack = (coordinate) => {
@@ -17,15 +28,22 @@ const Gameboard = () => {
   };
 
   const receiveAttack = (coordinate) => {
-    const isThereAShip = ships.find((ship) => ship.coordinates.includes(coordinate));
+    const target = ships.find((ship) => ship.coordinates.includes(coordinate));
 
-    if (isThereAShip) {
-      return isThereAShip.hit(coordinate);
+    if (target === undefined) {
+      registerMissedAttack(coordinate);
+    } else {
+      target.hit(coordinate);
+
+      if (target.isSunk()) {
+        checkShips();
+      }
     }
-    return registerMissedAttack(coordinate);
   };
 
-  return { placeShip, receiveAttack };
+  return {
+    placeShip, receiveAttack, checkShips, ships, missedAttacks,
+  };
 };
 
 module.exports = Gameboard;

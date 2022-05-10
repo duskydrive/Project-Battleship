@@ -6,8 +6,9 @@ test('Ship returns object with expected length', () => {
   expect(testShip.length).toEqual(4);
 });
 test('Hit function records hit', () => {
-  const testShip = Ship(4);
-  expect(testShip.hit(3)).toEqual([3]);
+  const testShip = Ship(1, 2, 3);
+  testShip.hit(3);
+  expect(testShip.hitPositions).toEqual([3]);
 });
 test('isSunk function shows true when ship has sunked', () => {
   const testShip = Ship(1, 2);

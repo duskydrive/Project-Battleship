@@ -6,12 +6,10 @@ const Ship = (...values) => {
     coordinates.push(values[i]);
   }
 
-  const length = coordinates.length;
+  const { length } = coordinates;
 
   const hit = (pos) => {
     hitPositions.push(pos);
-    // this return here is purely for test purposes
-    return hitPositions;
   };
 
   const isSunk = () => {
@@ -22,7 +20,7 @@ const Ship = (...values) => {
   };
 
   return {
-    length, hit, isSunk, coordinates,
+    length, hit, isSunk, coordinates, hitPositions,
   };
 };
 
