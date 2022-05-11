@@ -1,26 +1,20 @@
-const Ship = (...values) => {
-  const coordinates = [];
-  const hitPositions = [];
+const Ship = (num) => {
+  let hits = 0;
+  const length = num;
 
-  for (let i = 0; i < values.length; i++) {
-    coordinates.push(values[i]);
-  }
-
-  const { length } = coordinates;
-
-  const hit = (pos) => {
-    hitPositions.push(pos);
+  const hit = () => {
+    hits += 1;
   };
 
   const isSunk = () => {
-    if (length - hitPositions.length === 0) {
+    if (length - hits === 0) {
       return true;
     }
     return false;
   };
 
   return {
-    length, hit, isSunk, coordinates, hitPositions,
+    length, hit, isSunk,
   };
 };
 
