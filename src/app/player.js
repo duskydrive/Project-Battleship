@@ -1,26 +1,27 @@
 const Gameboard = require('./gameboard');
+const GenerateRandomCoordinate = require('./generateRandomCoordinate');
 
 const Player = () => {
   const gameboard = Gameboard();
+  const playerAttacks = [];
+  const generator = GenerateRandomCoordinate();
 
   const getGameboard = () => gameboard;
 
-  const generateRandomCoordinate = (exclude) => {
-    let random;
-    while (!random) {
-      const x = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-      if (exclude.indexOf(x) === -1) random = x;
-    }
-    return random;
+  const attack = (player, x, y) => {
+    player.getGameboard().receiveAttack(x, y);
+    playerAttacks.push([x, y]);
   };
-
-  const attack = (player, coordinate) => player.getGameboard().receiveAttack(coordinate);
 
   const computerAttack = (player) => {
-    attack(player, generateRandomCoordinate(gameboard.getAllAttacks()));
+    const coordinates = generator.sendCoordinates(playerAttacks, getGameboard().getBoard().length);
+    attack(player, coordinates[0], coordinates[1]);
+    playerAttacks.push(coordinates);
   };
 
-  return { getGameboard, attack, computerAttack };
+  return {
+    getGameboard, attack, computerAttack,
+  };
 };
 
 module.exports = Player;

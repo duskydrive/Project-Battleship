@@ -7,11 +7,11 @@ describe('Ship functions', () => {
     testShip = Ship(2);
     expect(testShip.length).toEqual(2);
   });
-  // test('Hit function records hit', () => {
-  //   testShip = Ship(2);
-  //   testShip.hit();
-  //   expect().toEqual(1);
-  // });
+  test('Hit function records hit', () => {
+    testShip = Ship(2);
+    testShip.hit();
+    expect(testShip.hits.length).toEqual(1);
+  });
   test('isSunk function shows true when ship has sunked', () => {
     testShip = Ship(2);
     testShip.hit();

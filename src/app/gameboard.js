@@ -46,8 +46,6 @@ const Gameboard = () => {
     });
   };
 
-  const getShip = (i) => ships[i].ship;
-
   const isGameOver = () => {
     let result = true;
 
@@ -89,7 +87,6 @@ const Gameboard = () => {
     setBoard,
     getBoard,
     receiveAttack,
-    getShip,
     getMissedAttacks,
     isGameOver,
   };
