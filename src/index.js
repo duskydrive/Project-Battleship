@@ -1,9 +1,6 @@
-import Ship from './app/ship';
+import './style/main.sass';
+import gameLoop from './app/controller/gameLoop';
+// import fillGameboard from './app/view/gameboardhtml';
 
-const littleShip = Ship(3);
-// littleShip.hit(1);
-// littleShip.hit(1);
-// littleShip.hit(3);
-// littleShip.hit(4);
-console.log(littleShip.isSunk());
-// console.log(littleShip);
+const game = gameLoop();
+game.setNewGame();

@@ -5,10 +5,24 @@
     box-sizing: border-box
 
 body
-    padding: 0 80px
-    min-height: 100vh
-    background: url("../img/bg.png") no-repeat
-    background-size: cover
+    padding: 50px
     font-family: 'Noto Sans', sans-serif
     font-size: 16px
     color: #282828
+
+.wrapper
+    display: flex
+
+.gameboard
+    margin: 30px
+    display: flex
+    flex-wrap: wrap
+    width: 400px
+    div
+        width: 40px
+        height: 40px
+        border: 1px solid #000
+        &.missed
+            background-color: blue
+        &.hit
+            background-color: red

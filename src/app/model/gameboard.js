@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 const Ship = require('./ship');
 
 const Gameboard = () => {
@@ -6,10 +7,8 @@ const Gameboard = () => {
   const board = [];
 
   const setBoard = (num) => {
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < num; i++) {
       board.push([]);
-      // eslint-disable-next-line no-plusplus
       for (let n = 0; n < num; n++) {
         board[i].push({
           shipId: false,
@@ -27,12 +26,12 @@ const Gameboard = () => {
     let row = x;
     let column = y;
 
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < length; i++) {
       board[row][column] = {
         shipId: id,
         isShot: false,
       };
+      newShip.addPositions([[row], [column]]);
       if (dir === 'horizontal') {
         column += 1;
       } else {
@@ -49,37 +48,50 @@ const Gameboard = () => {
   const isGameOver = () => {
     let result = true;
 
-    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < ships.length; i++) {
       if (!ships[i].ship.isSunk()) {
         result = false;
         break;
       }
     }
-
     return result;
   };
 
   const registerMissedAttack = (x, y) => {
     missedAttacks.push([x, y]);
+    return ['missed', false];
   };
 
   const getMissedAttacks = () => missedAttacks;
 
-  // eslint-disable-next-line consistent-return
   const receiveAttack = (x, y) => {
-    const target = board[x][y];
+    // console.log(typeof x, y);
+    const target = getBoard()[x][y];
     target.isShot = true;
 
     if (target.shipId === false) {
+      // alert('missed');
+
       return registerMissedAttack(x, y);
     }
+    // alert('hit');
     const targetShip = ships.find((ship) => ship.id === target.shipId).ship;
-    targetShip.hit();
+    // console.log(targetShip)
+    return [targetShip.hit(), targetShip.isSunk(), targetShip.getPositions()];
 
-    if (targetShip.isSunk()) {
-      return isGameOver();
-    }
+    // if (targetShip.isSunk()) {
+    //   return isGameOver();
+    // }
+  };
+
+  const blockGameboard = () => {
+    const gameboards = document.querySelectorAll('.gameboard');
+    gameboards.forEach((thisBoard) => thisBoard.classList.add('block'));
+  };
+
+  const unblockGameboard = () => {
+    const gameboards = document.querySelectorAll('.gameboard');
+    gameboards.forEach((thatBoard) => thatBoard.classList.remove('block'));
   };
 
   return {
@@ -89,6 +101,8 @@ const Gameboard = () => {
     receiveAttack,
     getMissedAttacks,
     isGameOver,
+    blockGameboard,
+    unblockGameboard,
   };
 };
 
