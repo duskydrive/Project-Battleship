@@ -2,7 +2,6 @@
 const Ship = require('./ship');
 
 const Gameboard = () => {
-  const missedAttacks = [];
   const ships = [];
   const board = [];
 
@@ -57,41 +56,21 @@ const Gameboard = () => {
     return result;
   };
 
-  const registerMissedAttack = (x, y) => {
-    missedAttacks.push([x, y]);
-    return ['missed', false];
-  };
-
-  const getMissedAttacks = () => missedAttacks;
-
-  const receiveAttack = (x, y) => {
-    // console.log(typeof x, y);
-    const target = getBoard()[x][y];
+  const receiveAttack = (coordinates) => {
+    const target = getBoard()[coordinates[0]][coordinates[1]];
     target.isShot = true;
 
     if (target.shipId === false) {
-      // alert('missed');
-
-      return registerMissedAttack(x, y);
+      return ['missed', false];
     }
-    // alert('hit');
+
     const targetShip = ships.find((ship) => ship.id === target.shipId).ship;
-    // console.log(targetShip)
-    return [targetShip.hit(), targetShip.isSunk(), targetShip.getPositions()];
 
-    // if (targetShip.isSunk()) {
-    //   return isGameOver();
-    // }
-  };
-
-  const blockGameboard = () => {
-    const gameboards = document.querySelectorAll('.gameboard');
-    gameboards.forEach((thisBoard) => thisBoard.classList.add('block'));
-  };
-
-  const unblockGameboard = () => {
-    const gameboards = document.querySelectorAll('.gameboard');
-    gameboards.forEach((thatBoard) => thatBoard.classList.remove('block'));
+    return {
+      result: targetShip.hit(),
+      isSunk: targetShip.isSunk(),
+      shipPosition: targetShip.getPositions(),
+    };
   };
 
   return {
@@ -99,10 +78,7 @@ const Gameboard = () => {
     setBoard,
     getBoard,
     receiveAttack,
-    getMissedAttacks,
     isGameOver,
-    blockGameboard,
-    unblockGameboard,
   };
 };
 

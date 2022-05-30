@@ -1,28 +1,318 @@
 @import './node_modules/reset-css/sass/reset'
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap')
 
 *
     box-sizing: border-box
 
+
+@keyframes gradient
+    0%
+        background-position: 0% 50%
+    50%
+        background-position: 100% 50%
+    100%
+        background-position: 0% 50%
+
 body
     padding: 50px
-    font-family: 'Noto Sans', sans-serif
+    min-height: 100vh
+    font-family: 'Roboto', sans-serif
     font-size: 16px
     color: #282828
+    background: url(../img/2.png) no-repeat center center fixed 
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+
+header
+    margin-bottom: 100px
+    display: flex
+    justify-content: center
+
+.container
+    position: relative
 
 .wrapper
     display: flex
+    justify-content: center
+    align-items: flex-start
+    .gameboard
+        position: relative
+        margin-bottom: 100px
+        &::before
+            content: 'Friendly waters'
+            position: absolute
+            bottom: -70px
+            left: -9px
+            background-color: green
+            padding: 15px
+            width: 489px
+            font-size: 2rem
+            font-weight: 300
+            color: #fff
+            text-align: center
+            background-color: rgba(0, 0, 0, 0.75)
+        &:last-child
+            margin-left: 100px
+            &::before
+                content: 'Enemy waters'
 
 .gameboard
-    margin: 30px
+    padding: 35px
     display: flex
     flex-wrap: wrap
-    width: 400px
+    width: 518px
+    gap: 3px
+    border: 9px solid #fff
+    background-color: rgba(0, 0, 0, 0.5)
     div
+        position: relative
         width: 40px
         height: 40px
-        border: 1px solid #000
+        border: 2px solid #fff
         &.missed
-            background-color: blue
+            &::before
+                content: ''
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                width: 18px
+                height: 18px
+                border-radius: 50%
+                background-color: #fff
         &.hit
-            background-color: red
+            &::before
+                content: ''
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                width: 18px
+                height: 18px
+                border-radius: 50%
+                background-color: #F83535
+
+.start-screen
+    display: flex
+    justify-content: center
+    // align-items: stretch
+    min-width: 100%
+    // height: 100%
+    opacity: 1
+    // visibility: visibility
+    transition: all 1s
+    &.hide
+        position: absolute
+        left: 0
+        top: 0
+        opacity: 0
+        // visibility: hidden
+    &.remove
+        display: none
+
+.hover
+    background-color: #F7689F
+
+.nodrop
+    cursor: no-drop
+
+.disable
+    background-color: #4A7078
+
+.save
+    background-color: #F7689F
+
+.menu
+    display: flex
+    flex-direction: column
+    opacity: 0
+    visibility: hidden
+    transition: all 0.5s
+    &.active
+        opacity: 1
+        visibility: visible
+.ship
+    background-color: #F7689F
+    &.hit
+        background: linear-gradient(-45deg, #F7689F, #e73c7e, #23a6d5, #23d5ab)
+        background-size: 400% 400%
+        animation: gradient 1s ease infinite
+
+.main-menu
+    display: flex
+    flex-direction: column
+    align-items: center
+    order: 2
+    padding: 70px 15px
+    margin-left: 100px
+    width: 518px
+    min-height: 290px
+    background-color: rgba(0, 0, 0, 0.6)
+    .heading
+        margin-bottom: 55px
+        text-align: center
+        font-size: 1.5rem
+        font-weight: 500
+        color: #fff
+    button
+        margin-bottom: 40px
+        cursor: pointer
+
+button
+    padding: 12px 17px
+    font-size: 1.4rem
+    color: #fff
+    border: 1px solid #fff
+    background-color: unset
+
+.toggle-menu
+    display: flex
+    flex-direction: column
+    &.hide
+        display: none
+
+.overlay
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 3
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.4)
+    opacity: 0
+    visibility: hidden
+    transition: opacity 0.5s, visibility 0.5s
+    &.active
+        opacity: 1
+        visibility: visible
+
+.modal
+    position: fixed
+    z-index: 5
+    top: 10%
+    left: 50%
+    transform: translate(-50%, 0)
+    padding: 45px 115px
+    text-align: center
+    background-color: #EEEEEE
+    opacity: 0
+    visibility: hidden
+    transition: opacity 0.5s, visibility 0.5s
+    &.active
+        opacity: 1
+        visibility: visible
+    .text
+        margin-bottom: 25px
+        font-weight: 700
+        font-size: 1.9rem
+    button
+        color: #000
+        border-color: #000
+        cursor: pointer
+
+@media screen and (max-width: 1440px)
+    header
+        margin-bottom: 75px
+
+    .logo
+        width: 400px
+    
+    button
+        padding: 10px 14px
+        font-size: 1.1rem
+    
+    .wrapper
+        .gameboard
+            &::before
+                bottom: -58px
+                width: 371px
+                font-size: 1.3rem
+            &:last-child
+                margin-left: 30px
+
+    .main-menu
+        margin-left: 30px
+        padding: 45px 15px
+        width: 398px
+        .heading
+            margin-bottom: 40px
+            font-size: 1.2rem
+        button
+            margin-bottom: 30px
+    
+    .gameboard
+        padding: 25px
+        width: 398px 
+        border: 7px solid #fff
+        div
+            width: 30px
+            height: 30px
+            &.hit::before,
+            &.missed::before
+                width: 11px
+                height: 11px
+    
+    .modal
+        top: 5%
+        padding: 35px 80px
+        .text
+            font-size: 1.5rem
+
+@media screen and (max-width: 940px)
+    body
+        padding: 30px 15px
+    
+    header
+        margin-bottom: 40px
+
+    .start-screen,
+    .wrapper
+        flex-direction: column
+        align-items: center
+    
+    .wrapper
+        .gameboard
+            &:last-child
+                margin-left: 0
+    
+    .gameboard
+        margin-bottom: 40px
+    
+    .main-menu
+        margin-left: 0
+        button
+            margin-bottom: 15px
+    
+    .modal
+        padding: 30px 50px
+
+@media screen and (max-width: 470px)
+    .logo
+        width: 280px
+
+    .gameboard
+        padding: 15px
+        width: 286px
+        gap: 1px
+        border: 2px solid #fff
+        div
+            width: 24px
+            height: 24px
+    
+    .main-menu
+        width: 286px
+    
+    .wrapper 
+        .gameboard::before
+            bottom: -48px
+            left: -3px
+            width: 258px
+            font-size: 1rem
+    
+    .modal
+        padding: 30px
+        min-width: 230px
+        .text
+            font-size: 1.2rem

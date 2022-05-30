@@ -7,6 +7,30 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-    <div id="wrapper" class="wrapper"></div>
+    <header>
+        <img src="" alt="" class="logo" id="logo">
+    </header>
+    <div class="container">
+        <div id="wrapper" class="wrapper"></div>
+        <div id="startScreen" class="start-screen">
+            <div id="mainMenu" class="main-menu">
+                <div id="menu1" class="toggle-menu">
+                    <div class="heading">Place your ships</div>
+                    <button id="shipDir">Change direction</button>
+                </div>
+                <div id="menu2" class="toggle-menu hide">
+                    <div class="heading">Are you ready?</div>
+                    <button id="start">Start game</button>
+                    <button id="replace">Replace ships</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <div class="text" id="winnerMsg">You win</div>
+        <button id="restart">Restart game</button>
+    </div>
 </body>
 </html>

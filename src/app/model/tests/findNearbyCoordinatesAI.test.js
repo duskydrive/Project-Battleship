@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
-const FindNearbyCoordinatesAI = require('../findNearbyCoordinatesAI');
+const FindNearbyHits = require('../findNearbyHits');
+const Gameloop = require('../../controller/gameLoop');
 
 // test('fuck', () => {
 // // const testG = Gameboard();
 // // testGameboard.setBoard(10);
-//   expect(FindNearbyCoordinatesAI({
+//   expect(FindNearbyHits({
 //     flag: true,
-//     startCoordinates: [0, 2],
-//     currentDirection: 'left',
+//     start: [0, 2],
+//     curDirection: 'left',
 //     lastAttack: [0, 0],
 //     up: false,
 //     right: false,
@@ -15,18 +16,3 @@ const FindNearbyCoordinatesAI = require('../findNearbyCoordinatesAI');
 //     left: true,
 //   }).pickDirection('left', [0, 0])).toEqual(10);
 // });
-
-test('fuck', () => {
-  // const testG = Gameboard();
-  // testGameboard.setBoard(10);
-  expect(FindNearbyCoordinatesAI({
-    flag: true,
-    startCoordinates: [4, 2],
-    currentDirection: 'left',
-    lastAttack: [4, 0],
-    up: false,
-    right: true,
-    down: false,
-    left: true,
-  }).pickDirection('left', [4, 0])).toEqual(10);
-});

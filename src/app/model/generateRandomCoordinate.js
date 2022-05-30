@@ -8,45 +8,47 @@ const GenerateRandomCoordinate = () => {
     }
   }
 
-  const isAvailable = (searchElement) => {
-    for (let i = 0; i < availableCoordinates.length; i++ ) {
-      if ( availableCoordinates[i][0] == searchElement[0] && availableCoordinates[i][1] == searchElement[1] ) {
-        return true;
+  const findCoordinates = (searchElement) => {
+    for (let i = 0; i < availableCoordinates.length; i++) {
+      if (availableCoordinates[i][0] === searchElement[0] && availableCoordinates[i][1] === searchElement[1]) {
+        return i;
       }
     }
     return false;
   };
 
-  const removeCoordinatesFromAvailable = (coordinates) => {
-    // console.log(coordinates)
-    let index;
-
-    for (let i = 0; i < availableCoordinates.length; i++ ) {
-      if ( availableCoordinates[i][0] == coordinates[0] && availableCoordinates[i][1] == coordinates[1] ) {
-        index = i;
-      }
+  const isAvailable = (searchElement) => {
+    if (findCoordinates(searchElement) || findCoordinates(searchElement) === 0) {
+      return true;
     }
+    return false;
+  };
 
+  const removeCoordinatesFromAvailable = (searchElement) => {
+    const index = findCoordinates(searchElement);
     availableCoordinates.splice(index, 1);
-    console.log(availableCoordinates.length)
   };
 
   const removeNearbyFromAvailable = (positions) => {
     for (let i = 0; i < positions.length; i++) {
       const coordinates = positions[i];
-      // console.log(coordinates);
-      if (isAvailable([parseInt(coordinates[0], 10) - 1, parseInt(coordinates[1], 10)])) {
-        removeCoordinatesFromAvailable([parseInt(coordinates[0], 10) - 1, parseInt(coordinates[1], 10)]);
-      }
-      if (isAvailable([parseInt(coordinates[0], 10) + 1, parseInt(coordinates[1], 10)])) {
-        removeCoordinatesFromAvailable([parseInt(coordinates[0], 10) + 1, parseInt(coordinates[1], 10)]);
-      }
-      if (isAvailable([parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) - 1])) {
-        removeCoordinatesFromAvailable([parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) - 1]);
-      }
-      if (isAvailable([parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) + 1])) {
-        removeCoordinatesFromAvailable([parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) + 1]);
-      }
+
+      const a = [parseInt(coordinates[0], 10) - 1, parseInt(coordinates[1], 10)];
+      const b = [parseInt(coordinates[0], 10) + 1, parseInt(coordinates[1], 10)];
+      const c = [parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) - 1];
+      const d = [parseInt(coordinates[0], 10), parseInt(coordinates[1], 10) + 1];
+      const e = [parseInt(coordinates[0], 10) - 1, parseInt(coordinates[1], 10) - 1];
+      const f = [parseInt(coordinates[0], 10) + 1, parseInt(coordinates[1], 10) - 1];
+      const g = [parseInt(coordinates[0], 10) - 1, parseInt(coordinates[1], 10) + 1];
+      const h = [parseInt(coordinates[0], 10) + 1, parseInt(coordinates[1], 10) + 1];
+
+      const arr = [a, b, c, d, e, f, g, h];
+
+      arr.forEach((val) => {
+        if (isAvailable(val)) {
+          removeCoordinatesFromAvailable(val);
+        }
+      });
     }
   };
 
