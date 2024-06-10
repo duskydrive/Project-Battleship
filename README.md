@@ -19,3 +19,13 @@ This project was a great challenge that helped me develop crucial dev skills. Wo
 
 The code quality isn't the best since this was one of my early projects, but I learned a lot from it and it was highly beneficial for my growth as a developer.
 
+## Screenshots
+
+![Screenshot 1](src/img/screenshots/screenshot1.png)
+*Description of screenshot 1*
+
+![Screenshot 2](src/img/screenshots/screenshot2.png)
+*Description of screenshot 2*
+
+![Screenshot 3](src/img/screenshots/screenshot3.png)
+*Description of screenshot 2*
