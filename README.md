@@ -22,10 +22,10 @@ The code quality isn't the best since this was one of my early projects, but I l
 ## Screenshots
 
 ![Screenshot 1](src/img/screenshots/screenshot1.png)
-*Description of screenshot 1*
+*Place your ships*
 
 ![Screenshot 2](src/img/screenshots/screenshot2.png)
-*Description of screenshot 2*
+*Fight against computer*
 
 ![Screenshot 3](src/img/screenshots/screenshot3.png)
-*Description of screenshot 2*
+*Loose or win*
