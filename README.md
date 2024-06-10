@@ -13,7 +13,9 @@
 
 ## About
 
-The hardest part was to programm the computers strategy. I've tried to keep things clean from the start, but when it came to AI brains - I totally got lost in hundred lines of code describing his actions.  
-Also I've tried to use a TDD here. I covered like 25% of project with tests, but at some point I've lost it and never came back to finish them. Lesson learned - you don't skip your test when you write them, or you might never come back to finish them.  
-I used a lot of factory functions here. I learned about this concept not to long ago before starting this project and it was really usefull. Definetly helped me to seperate program into smaller logical units and hide local functions from the global scope.  
+I built this Battleship game using pure JavaScript, without any frameworks or libraries. About 25% of the code is covered by TDD (Test-Driven Development).
+
+This project was a great challenge that helped me develop crucial dev skills. Working without libraries and frameworks taught me a lot about how JavaScript really works and why frameworks are great—they speed things up and make maintenance easier. The hardest part? Programming the opponent computer's brain!
+
+The code quality isn't the best since this was one of my early projects, but I learned a lot from it and it was highly beneficial for my growth as a developer.
 
