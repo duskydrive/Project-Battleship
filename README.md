@@ -28,4 +28,4 @@ The code quality isn't the best since this was one of my early projects, but I l
 *Fight against computer*
 
 ![Screenshot 3](src/img/screenshots/screenshot3.png)
-*Loose or win*
+*Win... or not*
